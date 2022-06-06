@@ -13,6 +13,8 @@ $dbname = "pt-recisa-db";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
+
+//CRUD ASESORES
 // Consulta todos los asesores
 if (isset($_GET["query-asesor"]) && $_GET["query-asesor"]==null) {
     $stm = mysqli_query($conn,"SELECT * FROM asesor ");
@@ -74,6 +76,75 @@ if(isset($_GET["edit-asesor"])){
     $apellido=$data->apellido;
     
     $stm = mysqli_query($conn,"UPDATE asesor SET nombre='$nombre',apellido='$apellido' WHERE id='$id'");
+    echo json_encode(["success"=>1]);
+    exit();
+}
+
+
+//CRUD ESTACIONES
+// Consulta todas las estacion
+if (isset($_GET["query-estacion"]) && $_GET["query-estacion"]==null) {
+    $stm = mysqli_query($conn,"SELECT * FROM estacion ");
+    if (mysqli_num_rows($stm) > 0){
+        $rs = mysqli_fetch_all($stm,MYSQLI_ASSOC);
+        echo json_encode($rs);
+        header("HTTP/1.1 200 OK");
+        exit();
+    } else { 
+        echo json_encode([["success"=>0]]);
+        exit();
+    }
+}
+
+// Consulta estacion por id
+if (isset($_GET["query-estacion"]) && $_GET["query-estacion"]!=null){
+    $stm = mysqli_query($conn,"SELECT * FROM estacion WHERE id=".$_GET["query-estacion"]);
+    if(mysqli_num_rows($stm) > 0){
+        $rs = mysqli_fetch_all($stm,MYSQLI_ASSOC);
+        echo json_encode($rs);
+        header("HTTP/1.1 200 OK");
+        exit();
+    }else{
+        echo json_encode(["success"=>0]);
+        exit();
+    }
+}
+
+// Borra estacion por id
+if (isset($_GET["del-estacion"])){
+    $stm = mysqli_query($conn,"DELETE FROM estacion WHERE id=".$_GET["del-estacion"]);
+    if($stm){
+        echo json_encode(["success"=>1]);
+        exit();
+    }else{
+        echo json_encode(["success"=>0]);
+        exit();
+    }
+}
+
+// Agregar estacion
+if(isset($_GET["add-estacion"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $nombre=$data->nombre;
+    $stockTarjeta=$data->stockTarjeta;
+    $saldoCaja=$data->saldoCaja;
+    if(($apellido!="")&&($nombre!="")){        
+        $stm = mysqli_query($conn,"INSERT INTO estacion(nombre,stock_tarjeta, saldo_caja) VALUES('$nombre','$stockTarjeta','$saldoCaja') ");
+        echo json_encode(["success"=>1]);
+    }
+    exit();
+}
+
+// Actualiza estacion
+if(isset($_GET["edit-estacion"])){
+    $data = json_decode(file_get_contents("php://input"));
+
+    $id=(isset($data->id))?$data->id:$_GET["edit-estacion"];
+    $nombre=$data->nombre;
+    $stockTarjeta=$data->stockTarjeta;
+    $saldoCaja=$data->saldoCaja;
+    
+    $stm = mysqli_query($conn,"UPDATE estacion SET nombre='$nombre',stock_tarjeta='$stockTarjeta',saldo_caja='$saldoCaja' WHERE id='$id'");
     echo json_encode(["success"=>1]);
     exit();
 }
