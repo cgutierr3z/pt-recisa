@@ -7,6 +7,8 @@ import { ListAsesorComponent } from './list-asesor/list-asesor.component';
 import { AddEstacionComponent } from './components/add-estacion/add-estacion.component';
 import { ListEstacionComponent } from './components/list-estacion/list-estacion.component';
 import { EditEstacionComponent } from './components/edit-estacion/edit-estacion.component'
+import { ListVentaComponent } from './components/list-venta/list-venta.component';
+import { AddVentaComponent } from './components/add-venta/add-venta.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path: 'edit-asesor/:id', component: EditAsesorComponent},
   {path: 'list-estacion', component: ListEstacionComponent},
   {path: 'add-estacion', component: AddEstacionComponent},
-  {path: 'edit-estacion/:id', component: EditEstacionComponent}
+  {path: 'edit-estacion/:id', component: EditEstacionComponent},
+  {path: 'list-venta', component: ListVentaComponent},
+  {path: 'add-venta', component: AddVentaComponent}
 ];
 
 @NgModule({
