@@ -10,16 +10,23 @@ import { ToastrModule } from 'ngx-toastr';
 import { AddAsesorComponent } from './add-asesor/add-asesor.component';
 import { ListAsesorComponent } from './list-asesor/list-asesor.component';
 import { EditAsesorComponent } from './edit-asesor/edit-asesor.component';
+import { AddEstacionComponent } from './components/add-estacion/add-estacion.component';
+import { ListEstacionComponent } from './components/list-estacion/list-estacion.component';
+import { EditEstacionComponent } from './components/edit-estacion/edit-estacion.component'
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddAsesorComponent,
     ListAsesorComponent,
-    EditAsesorComponent
+    EditAsesorComponent,
+    AddEstacionComponent,
+    ListEstacionComponent,
+    EditEstacionComponent
   ],
   imports: [
     BrowserModule,
