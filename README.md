@@ -4,11 +4,11 @@ STM - RECISA es una Prueba Técnica de Angular, PHP y MariaDB hecha por Carlos G
 
 # Instrucciones de Instalacion
 - Clonar repositorio en el DocumentRoot del localhost.
-- Ejecutar 'npm install' desde la consola de comandos para instalar todas las depencias del proyecto. 
-- Importar desde phpMyAdmin el script '/api/pt-recisa-db.sql', este crea la base de datos y carga un dataset de prueba.
-- Editar las credenciales de acceso a la DB si es necesario en '/api/index.php'
-- Comprobar funcionamiento de la API desde http://localhost/pt-recisa/api/?query-asesor
-- Ejecutar 'npm serve' y acceder a http://localhost:4200 para visualizar el proyecto.
+- Ejecutar `npm install` desde la consola de comandos para instalar todas las depencias del proyecto. 
+- Importar desde phpMyAdmin el script `/api/pt-recisa-db.sql`, este crea la base de datos y carga un dataset de prueba.
+- Editar las credenciales de acceso a la DB si es necesario en `/api/index.php`
+- Comprobar funcionamiento de la API desde `http://localhost/pt-recisa/api/?query-asesor`
+- Ejecutar `npm serve` y acceder a `http://localhost:4200` para visualizar el proyecto.
 
 # Requerimientos FrontEnd
 - node v16.15.1
