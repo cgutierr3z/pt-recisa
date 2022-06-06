@@ -1,1 +1,40 @@
-<p>list-estacion works!</p>
+<h1>Listado Estaciones
+    <a class="btn btn-primary" role="button" routerLink="/add-estacion/">
+        <i class="bi bi-plus-square-fill"> </i> Agregar Estacion
+    </a>
+</h1>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>STOCK TARJETAS</th>
+            <th>SALDO CAJA</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let estacion of Estaciones; let i=index">
+            <td scope="row">{{estacion.id}}</td>
+            <td>{{estacion.nombre}}</td>
+            <td>{{estacion.stock_tarjeta}}</td>
+            <td>${{estacion.saldo_caja}}</td>
+            <td>
+                <a class="btn btn-outline-primary me-1" routerLink="/edit-estacion/{{estacion.id}}"> Editar <i class="bi bi-pencil-square"></i></a> 
+                <a class="btn btn-outline-danger" role="button" (click)="delEstacion(estacion.id,i)"> Borrar <i class="bi bi-trash-fill"></i></a> 
+            </td>
+        </tr>
+        
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>STOCK TARJETAS</th>
+            <th>SALDO CAJA</th>
+            <th>ACCIONES</th>
+        </tr>
+    </tfoot>
+</table>
+
+
