@@ -13,13 +13,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td scope="row">a</td>
-            <td>a</td>
-            <td>a</td>
+        <tr *ngFor="let asesor of Asesores; let i=index">
+            <td scope="row">{{asesor.id}}</td>
+            <td>{{asesor.nombre}}</td>
+            <td>{{asesor.apellido}}</td>
             <td>
-                <a class="btn btn-outline-primary me-1" routerLink="/edit-asesor/1">Editar <i class="bi bi-pencil-square"></i></a> 
-                <a class="btn btn-outline-danger"> Borrar <i class="bi bi-trash-fill"></i></a> 
+                <a class="btn btn-outline-primary me-1" routerLink="/edit-asesor/{{asesor.id}}">Editar <i class="bi bi-pencil-square"></i></a> 
+                <a class="btn btn-outline-danger" role="button" (click)="delAsesor(asesor.id,i)"> Borrar <i class="bi bi-trash-fill"></i></a> 
             </td>
         </tr>
         
@@ -33,3 +33,4 @@
         </tr>
     </tfoot>
 </table>
+
