@@ -149,4 +149,62 @@ if(isset($_GET["edit-estacion"])){
     exit();
 }
 
+
+//CRUD VENTAS
+// Consulta todas las ventas
+if (isset($_GET["query-venta"]) && $_GET["query-venta"]==null) {
+    $stm = mysqli_query($conn,"SELECT venta.id, asesor.nombre AS asesor_n, estacion.nombre AS estacion_n, venta.cantidad_venta, venta.total_venta, venta.fecha_venta FROM venta, asesor, estacion WHERE venta.id_asesor = asesor.id && venta.id_estacion = estacion.id; ");
+    if (mysqli_num_rows($stm) > 0){
+        $rs = mysqli_fetch_all($stm,MYSQLI_ASSOC);
+        echo json_encode($rs);
+        header("HTTP/1.1 200 OK");
+        exit();
+    } else { 
+        echo json_encode([["success"=>0]]);
+        exit();
+    }
+}
+
+// Borra venta por id
+if (isset($_GET["del-venta"])){
+    $stm = mysqli_query($conn,"SELECT * FROM venta WHERE id=".$_GET["del-venta"]);
+    $row = mysqli_fetch_row($stm);
+    $estacion = $row[2];
+    $stm2 = mysqli_query($conn,"SELECT * FROM estacion WHERE id='$estacion'");
+    $row2 = mysqli_fetch_row($stm2);
+    $newStock = $row2[2]+$row[3];
+    $newTotal = $row2[3]-$row[4];
+    $stm3 = mysqli_query($conn,"UPDATE estacion SET stock_tarjeta='$newStock',saldo_caja='$newTotal' WHERE id='$estacion'");
+
+    $stm4 = mysqli_query($conn,"DELETE FROM venta WHERE id=".$_GET["del-venta"]);
+    if($stm4){
+        
+        echo json_encode(["success"=>1]);
+        exit();
+    }else{
+        echo json_encode(["success"=>0]);
+        exit();
+    }
+}
+
+// Agregar venta
+if(isset($_GET["add-venta"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $asesor=$data->asesor;
+    $estacion=$data->estacion;
+    $cantidad=$data->cantidad;
+    $total=$data->total;
+    if(($asesor!="")&&($estacion!="")&&($cantidad!="")&&($total!="")){        
+        $stm = mysqli_query($conn,"INSERT INTO venta(id_asesor,id_estacion, cantidad_venta, total_venta) VALUES('$asesor','$estacion','$cantidad','$total') ");
+        $stm2 = mysqli_query($conn,"SELECT * FROM estacion WHERE id='$estacion'");
+        $row = mysqli_fetch_row($stm2);
+        $newStock = $row[2]-$cantidad;
+        $newTotal = $row[3]+$total;
+        $stm3 = mysqli_query($conn,"UPDATE estacion SET stock_tarjeta='$newStock',saldo_caja='$newTotal' WHERE id='$estacion'");
+        echo json_encode(["success"=>1]);
+    }
+    exit();
+}
+
+
 ?>
