@@ -9,6 +9,7 @@ import { venta } from './venta';
 })
 export class CrudVentaService {
 
+  //API: string="https://cgutierr3z.000webhostapp.com/recisa/api/";
   API: string="http://localhost/pt-recisa/api/";
   constructor(private ch:HttpClient) {
 

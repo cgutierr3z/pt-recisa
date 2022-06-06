@@ -8,6 +8,8 @@ import { asesor } from './asesor';
   providedIn: 'root'
 })
 export class CrudAsesorService {
+  
+  //API: string="https://cgutierr3z.000webhostapp.com/recisa/api/";
   API: string="http://localhost/pt-recisa/api/";
   constructor(private ch:HttpClient) {
 

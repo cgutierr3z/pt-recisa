@@ -8,6 +8,8 @@ import { estacion } from './estacion';
   providedIn: 'root'
 })
 export class CrudEstacionService {
+
+  //API: string="https://cgutierr3z.000webhostapp.com/recisa/api/";
   API: string="http://localhost/pt-recisa/api/";
   constructor(private ch:HttpClient) {
 
