@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudAsesorService } from '../services/crud-asesor.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-asesor',
@@ -9,18 +9,30 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-asesor.component.css']
 })
 export class ListAsesorComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
   Asesores:any;
+  dtTrigger: Subject<any> = new Subject<any>();
+  
   constructor(
     private cruds:CrudAsesorService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 25
+    };
     this.cruds.getAllAsesor().subscribe(rs=>{
       //console.log(rs);
       this.Asesores=rs;
+      this.dtTrigger.next(void 0);
     });
-    
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   delAsesor(id:any,i:any){

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { DataTablesModule } from "angular-datatables";
 
 import { AddAsesorComponent } from './add-asesor/add-asesor.component';
 import { ListAsesorComponent } from './list-asesor/list-asesor.component';
@@ -16,6 +16,8 @@ import { EditEstacionComponent } from './components/edit-estacion/edit-estacion.
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddVentaComponent } from './components/add-venta/add-venta.component';
+import { ListVentaComponent } from './components/list-venta/list-venta.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     EditAsesorComponent,
     AddEstacionComponent,
     ListEstacionComponent,
-    EditEstacionComponent
+    EditEstacionComponent,
+    AddVentaComponent,
+    ListVentaComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
