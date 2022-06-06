@@ -6,8 +6,8 @@ import { EditAsesorComponent } from './edit-asesor/edit-asesor.component';
 import { ListAsesorComponent } from './list-asesor/list-asesor.component';
 
 const routes: Routes = [
-  {path: '',pathMatch:'full', redirectTo:'asesores'},
-  {path: 'asesores', component: ListAsesorComponent},
+  {path: '',pathMatch:'full', redirectTo:'list-asesor'},
+  {path: 'list-asesor', component: ListAsesorComponent},
   {path: 'add-asesor', component: AddAsesorComponent},
   {path: 'edit-asesor/:id', component: EditAsesorComponent}
 ];
