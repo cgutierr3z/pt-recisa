@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudAsesorService } from '../services/crud-asesor.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-edit-asesor',
@@ -17,7 +19,8 @@ export class EditAsesorComponent implements OnInit {
     private ar:ActivatedRoute, 
     private cruds:CrudAsesorService,
     public fb:FormBuilder,
-    private rout:Router
+    private rout:Router,
+    private toastr: ToastrService
   ) {
     this.id=this.ar.snapshot.paramMap.get('id');
     //console.log(this.id);
@@ -50,8 +53,10 @@ export class EditAsesorComponent implements OnInit {
     console.log(this.fg.value);
     this.cruds.editAsesor(this.id,this.fg.value).subscribe(()=>{
       this.rout.navigateByUrl('/list-asesor');
+      this.toastr.success("El asesor se ha editado con exito.", "Asesor editado!");
     });
     //this.rout.navigateByUrl('/list-asesor');
+    
   }
 
 }

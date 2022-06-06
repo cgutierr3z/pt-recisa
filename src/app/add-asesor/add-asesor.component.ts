@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CrudAsesorService } from '../services/crud-asesor.service';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +15,8 @@ export class AddAsesorComponent implements OnInit {
   constructor(
     public fb:FormBuilder, 
     private cruds:CrudAsesorService, 
-    private rout:Router
+    private rout:Router,
+    private toastr: ToastrService
   ) {
     this.fg=this.fb.group({
       nombre:[''],
@@ -31,6 +33,7 @@ export class AddAsesorComponent implements OnInit {
     this.cruds.addAsesor(this.fg.value).subscribe(()=>{
       this.rout.navigateByUrl('/list-asesor');
     });
+    this.toastr.success("El asesor se ha agregado con exito.", "Asesor agregado!");
     
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudAsesorService } from '../services/crud-asesor.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -9,7 +10,10 @@ import { CrudAsesorService } from '../services/crud-asesor.service';
 })
 export class ListAsesorComponent implements OnInit {
   Asesores:any;
-  constructor(private cruds:CrudAsesorService) { }
+  constructor(
+    private cruds:CrudAsesorService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.cruds.getAllAsesor().subscribe(rs=>{
@@ -24,8 +28,10 @@ export class ListAsesorComponent implements OnInit {
     if(window.confirm("¿Desea borrar el asesor?")){
       this.cruds.delAsesor(id).subscribe(rs=>{
         this.Asesores.splice(i);
+        this.toastr.success("El asesor se ha eliminado con exito.", "Asesor eliminado!");
       });
     }
+    
       
   }
   
