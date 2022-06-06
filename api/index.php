@@ -13,7 +13,7 @@ $dbname = "pt-recisa-db";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
-// Consulta todos los registros de la tabla empleados
+// Consulta todos los asesores
 if (isset($_GET["query-asesor"]) && $_GET["query-asesor"]==null) {
     $stm = mysqli_query($conn,"SELECT * FROM asesor ");
     if (mysqli_num_rows($stm) > 0){
@@ -27,7 +27,7 @@ if (isset($_GET["query-asesor"]) && $_GET["query-asesor"]==null) {
     }
 }
 
-// Consulta datos y recepciona una clave para consultar dichos datos con dicha clave
+// Consulta asesor por id
 if (isset($_GET["query-asesor"]) && $_GET["query-asesor"]!=null){
     $stm = mysqli_query($conn,"SELECT * FROM asesor WHERE id=".$_GET["query-asesor"]);
     if(mysqli_num_rows($stm) > 0){
@@ -41,7 +41,7 @@ if (isset($_GET["query-asesor"]) && $_GET["query-asesor"]!=null){
     }
 }
 
-//borrar pero se le debe de enviar una clave ( para borrado )
+// Borra asesor por id
 if (isset($_GET["del-asesor"])){
     $stm = mysqli_query($conn,"DELETE FROM asesor WHERE id=".$_GET["del-asesor"]);
     if($stm){
@@ -53,7 +53,7 @@ if (isset($_GET["del-asesor"])){
     }
 }
 
-//Inserta un nuevo registro y recepciona en método post los datos de nombre y correo
+// Agregar asesor
 if(isset($_GET["add-asesor"])){
     $data = json_decode(file_get_contents("php://input"));
     $nombre=$data->nombre;
@@ -65,11 +65,11 @@ if(isset($_GET["add-asesor"])){
     exit();
 }
 
-// Actualiza datos pero recepciona datos de nombre, correo y una clave para realizar la actualización
-if(isset($_GET["update-asesor"])){
+// Actualiza asesor
+if(isset($_GET["edit-asesor"])){
     $data = json_decode(file_get_contents("php://input"));
 
-    $id=(isset($data->id))?$data->id:$_GET["update-asesor"];
+    $id=(isset($data->id))?$data->id:$_GET["edit-asesor"];
     $nombre=$data->nombre;
     $apellido=$data->apellido;
     
