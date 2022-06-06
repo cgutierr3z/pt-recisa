@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudAsesorService } from '../services/crud-asesor.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
