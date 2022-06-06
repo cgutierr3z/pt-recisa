@@ -1,3 +1,8 @@
+<h1>Listado Asesores
+    <a class="btn btn-primary" role="button" routerLink="/add-asesor/">
+        <i class="bi bi-plus-square-fill"> </i> Agregar Asesor
+    </a>
+</h1>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -12,7 +17,10 @@
             <td scope="row">a</td>
             <td>a</td>
             <td>a</td>
-            <td>Editar | Borrar</td>
+            <td>
+                <a class="btn btn-outline-primary me-1" routerLink="/edit-asesor/1">Editar <i class="bi bi-pencil-square"></i></a> 
+                <a class="btn btn-outline-danger"> Borrar <i class="bi bi-trash-fill"></i></a> 
+            </td>
         </tr>
         
     </tbody>
