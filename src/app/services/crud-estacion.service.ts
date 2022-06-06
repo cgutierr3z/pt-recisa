@@ -21,7 +21,7 @@ export class CrudEstacionService {
     return this.ch.post(this.API+"?edit-estacion="+id,data);
   }
 
-  getAllEstacionr(){
+  getAllEstacion(){
     return this.ch.get(this.API+"?query-estacion");
   }
 
