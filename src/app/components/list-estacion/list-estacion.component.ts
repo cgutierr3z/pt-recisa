@@ -24,15 +24,13 @@ export class ListEstacionComponent implements OnInit {
   }
 
   delEstacion(id:any,i:any){
-    console.log(id,i);
+    //console.log(id,i);
     if(window.confirm("¿Desea borrar la estacion?")){
       this.cruds.delEstacion(id).subscribe(rs=>{
-        this.Estaciones.splice(i);
+        this.Estaciones.splice(i,1);
         this.toastr.success("La estacion se ha eliminado con exito.", "Estacion eliminada!");
       });
     }
-    
-      
   }
 
 }
