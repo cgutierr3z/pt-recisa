@@ -128,7 +128,7 @@ if(isset($_GET["add-estacion"])){
     $nombre=$data->nombre;
     $stockTarjeta=$data->stockTarjeta;
     $saldoCaja=$data->saldoCaja;
-    if(($apellido!="")&&($nombre!="")){        
+    if(($nombre!="")&&($stockTarjeta!="")&&($saldoCaja!="")){        
         $stm = mysqli_query($conn,"INSERT INTO estacion(nombre,stock_tarjeta, saldo_caja) VALUES('$nombre','$stockTarjeta','$saldoCaja') ");
         echo json_encode(["success"=>1]);
     }
