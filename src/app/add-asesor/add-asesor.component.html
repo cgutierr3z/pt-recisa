@@ -1,29 +1,25 @@
-
 <div class="card">
-    <div class="card-header">
-        <h3>Agregar Asesor</h3>
-    </div>
-    <div class="card-body">
-        
-        <form ngNativeValidate class="row g-2 needs-validation" >
-            <div class="col-md-6">
-              <label for="validationCustom01" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="validationCustom01" required>
-              
-            </div>
-            <div class="col-md-6">
-              <label for="validationCustom02" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="validationCustom02" required>
-              
-            </div>
-            
-            <div class="col-12">                
-                <a class="btn btn-outline-secondary mx-1"  routerLink="/asesores/"> <i class="bi bi-arrow-bar-left"> </i>Volver</a>
-                <button class="btn btn-success mx-1"  type="submit"> <i class="bi bi-save-fill"></i> Agregar</button>
-            </div>
-          </form>
+  <div class="card-header">
+      <h3>Agregar Asesor</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="fg" ngNativeValidate (ngSubmit)="submitData()" class="row g-2">
+      <div class="col-md-6">
+        <label for="validationCustom01" class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" id="validationCustom01" required>
+      </div>
 
-    </div>
-    
+      <div class="col-md-6">
+        <label for="validationCustom02" class="form-label">Apellido</label>
+        <input type="text" class="form-control" formControlName="apellido" id="validationCustom02" required>
+      </div>
+      
+      <div class="col-md mt-3">                
+          <a class="btn btn-outline-secondary mx-1"  routerLink="/asesores/"> <i class="bi bi-arrow-bar-left"> </i>Volver</a>
+          <button class="btn btn-success mx-1"  type="submit"> <i class="bi bi-save-fill"></i> Agregar</button>
+      </div>
+    </form>
+
+  </div>
 </div>
 
