@@ -27,7 +27,7 @@ export class ListAsesorComponent implements OnInit {
     console.log(id,i);
     if(window.confirm("¿Desea borrar el asesor?")){
       this.cruds.delAsesor(id).subscribe(rs=>{
-        this.Asesores.splice(i);
+        this.Asesores.splice(i,1);
         this.toastr.success("El asesor se ha eliminado con exito.", "Asesor eliminado!");
       });
     }
